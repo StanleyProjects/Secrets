@@ -6,7 +6,7 @@ import java.security.PublicKey
 import java.security.spec.PKCS8EncodedKeySpec
 import java.security.spec.X509EncodedKeySpec
 
-internal object RSAFactory : Asymmetric.Factory {
+object RSAFactory : Asymmetric.Factory {
     override fun toPublicKey(encoded: ByteArray): PublicKey {
         val keyFactory = KeyFactory.getInstance("RSA")
         val keySpec = X509EncodedKeySpec(encoded)

@@ -4,7 +4,7 @@ import java.security.PrivateKey
 import java.security.PublicKey
 import java.security.Signature
 
-internal class RSASigning(private val algorithm: String) : Asymmetric.Signing {
+class RSASigning(private val algorithm: String) : Asymmetric.Signing {
     override fun sign(key: PrivateKey, encoded: ByteArray): ByteArray {
         val sig = Signature.getInstance(algorithm)
         sig.initSign(key)
