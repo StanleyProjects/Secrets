@@ -14,5 +14,7 @@ fun main() {
     val random: SecureRandom = SecureRandom.getInstanceStrong()
     val iv = ByteArray(16)
     random.nextBytes(iv)
-    enc.encrypt(key = key, decrypted = decrypted, iv = iv)
+    val encrypted = enc.encrypt(key = key, decrypted = decrypted, iv = iv)
+    val actual = enc.decrypt(key = key, encrypted = encrypted, iv = iv)
+    check(decrypted.contentEquals(actual))
 }
