@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import java.security.SecureRandom
 import javax.crypto.KeyGenerator
-import java.security.Security
 
 internal class AESFactoryTest {
     @Test
@@ -15,7 +14,6 @@ internal class AESFactoryTest {
         val factory: Symmetric.Factory = Symmetric.AES.factory
         val actual = factory.toSecretKey(encoded = key.encoded)
         assertTrue(key.encoded.contentEquals(actual.encoded))
-        val message = Security.getAlgorithms("Cipher")?.joinToString(separator = "\n").orEmpty()
-        error(message)
+        TODO()
     }
 }

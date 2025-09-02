@@ -4,21 +4,21 @@ import javax.crypto.SecretKey
 
 class Symmetric(
     val factory: Factory,
-//    val enc: Encryption,
+    val enc: Encryption,
 ) {
     interface Factory {
         fun toSecretKey(encoded: ByteArray): SecretKey
     }
 
     interface Encryption {
-        fun encrypt(key: SecretKey, decrypted: ByteArray): ByteArray
-        fun decrypt(key: SecretKey, encrypted: ByteArray): ByteArray
+        fun encrypt(key: SecretKey, decrypted: ByteArray, iv: ByteArray): ByteArray
+        fun decrypt(key: SecretKey, encrypted: ByteArray, iv: ByteArray): ByteArray
     }
 
     companion object {
         val AES = Symmetric(
             factory = AESFactory,
-//            enc = TODO(),
+            enc = AESCBCEncryption(paddings = "PKCS5Padding"),
         )
     }
 }
