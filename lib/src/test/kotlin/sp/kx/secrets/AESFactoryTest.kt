@@ -14,6 +14,5 @@ internal class AESFactoryTest {
         val factory: Symmetric.Factory = Symmetric.AES.factory
         val actual = factory.toSecretKey(encoded = key.encoded)
         assertTrue(key.encoded.contentEquals(actual.encoded))
-        TODO()
     }
 }
