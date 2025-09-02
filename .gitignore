@@ -2,6 +2,7 @@
 !/.github
 !/buildSrc
 !/lib
+!/sample
 !.gitignore
 !build.gradle.kts
 !settings.gradle.kts
