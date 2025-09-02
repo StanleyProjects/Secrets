@@ -28,7 +28,7 @@ class Symmetric(
                 algorithm = "PBKDF2WithHmacSHA256",
                 iterations = 1_048_576,
                 keyLength = 256,
-            )
+            ),
         )
     }
 }
