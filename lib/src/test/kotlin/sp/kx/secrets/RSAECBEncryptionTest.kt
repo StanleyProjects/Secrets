@@ -14,7 +14,7 @@ internal class RSAECBEncryptionTest {
         val keyPair = generator.generateKeyPair()
         val decrypted = "foobarbaz".toByteArray()
         val paddings = "PKCS1Padding"
-        val encryption: Asymmetric.Encryption = RSAECBEncryption(paddings = paddings)
+        val encryption: Asymmetric.Encryption = Asymmetric.RSA.enc
         val actual = encryption.encrypt(key = keyPair.public, decrypted = decrypted)
         val cipher = Cipher.getInstance("RSA/ECB/$paddings")
         cipher.init(Cipher.DECRYPT_MODE, keyPair.private)
@@ -31,7 +31,7 @@ internal class RSAECBEncryptionTest {
         val cipher = Cipher.getInstance("RSA/ECB/$paddings")
         cipher.init(Cipher.ENCRYPT_MODE, keyPair.public)
         val encrypted = cipher.doFinal(decrypted)
-        val encryption: Asymmetric.Encryption = RSAECBEncryption(paddings = paddings)
+        val encryption: Asymmetric.Encryption = Asymmetric.RSA.enc
         val actual = encryption.decrypt(key = keyPair.private, encrypted = encrypted)
         assertTrue(decrypted.contentEquals(actual))
     }

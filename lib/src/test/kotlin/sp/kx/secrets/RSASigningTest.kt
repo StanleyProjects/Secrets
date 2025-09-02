@@ -15,7 +15,7 @@ internal class RSASigningTest {
         val keyPair = generator.generateKeyPair()
         val decrypted = "foobarbaz".toByteArray()
         val algorithm = "SHA256withRSA"
-        val signing: Asymmetric.Signing = RSASigning(algorithm = algorithm)
+        val signing: Asymmetric.Signing = Asymmetric.RSA.signing
         val actual = signing.sign(key = keyPair.private, encoded = decrypted)
         val sig = Signature.getInstance(algorithm)
         sig.initVerify(keyPair.public)
@@ -34,7 +34,7 @@ internal class RSASigningTest {
         sig.initSign(keyPair.private)
         sig.update(decrypted)
         val signature = sig.sign()
-        val signing: Asymmetric.Signing = RSASigning(algorithm = algorithm)
+        val signing: Asymmetric.Signing = Asymmetric.RSA.signing
         assertTrue(signing.verify(key = keyPair.public, encoded = decrypted, signature = signature))
         val other = "qwe123asd".toByteArray()
         check(!decrypted.contentEquals(other))
