@@ -1,3 +1,3 @@
 rootProject.name = "Secrets"
 
-include("lib")
+include("lib", "sample")
