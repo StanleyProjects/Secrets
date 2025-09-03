@@ -21,7 +21,20 @@ class Asymmetric(
      * @since 0.1.0
      */
     interface Factory {
+        /**
+         * Decoding [PublicKey].
+         *
+         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+         * @since 0.1.0
+         */
         fun toPublicKey(encoded: ByteArray): PublicKey
+
+        /**
+         * Decoding [PrivateKey].
+         *
+         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+         * @since 0.1.0
+         */
         fun toPrivateKey(encoded: ByteArray): PrivateKey
     }
 
@@ -32,7 +45,20 @@ class Asymmetric(
      * @since 0.1.0
      */
     interface Encryption {
+        /**
+         * Encrypt [decrypted] message using [key].
+         *
+         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+         * @since 0.1.0
+         */
         fun encrypt(key: PublicKey, decrypted: ByteArray): ByteArray
+
+        /**
+         * Decrypt [encrypted] message using [key].
+         *
+         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+         * @since 0.1.0
+         */
         fun decrypt(key: PrivateKey, encrypted: ByteArray): ByteArray
     }
 
@@ -43,7 +69,20 @@ class Asymmetric(
      * @since 0.1.0
      */
     interface Signing {
+        /**
+         * Sign [encoded] message using [key].
+         *
+         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+         * @since 0.1.0
+         */
         fun sign(key: PrivateKey, encoded: ByteArray): ByteArray
+
+        /**
+         * Verify [signature] of [encoded] message using [key].
+         *
+         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+         * @since 0.1.0
+         */
         fun verify(key: PublicKey, encoded: ByteArray, signature: ByteArray): Boolean
     }
 
