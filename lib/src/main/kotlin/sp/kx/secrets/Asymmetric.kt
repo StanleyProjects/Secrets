@@ -89,7 +89,7 @@ class Asymmetric(
          * val key: PrivateKey = ...
          * val encrypted = File("foo.enc").readBytes()
          * val enc: Asymmetric.Encryption = ...
-         * val decrypted = enc.decrypt(key, decrypted)
+         * val decrypted = enc.decrypt(key, encrypted)
          * ```
          * @author [Stanley Wintergreen](https://github.com/kepocnhh)
          * @since 0.1.0

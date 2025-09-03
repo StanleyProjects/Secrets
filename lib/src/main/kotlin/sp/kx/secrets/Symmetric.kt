@@ -91,7 +91,7 @@ class Symmetric(
          * val encrypted = File("foo.enc").readBytes()
          * val iv = File("foo.iv").readBytes()
          * val enc: Symmetric.Encryption = ...
-         * val decrypted = enc.decrypt(key, decrypted, iv)
+         * val decrypted = enc.decrypt(key, encrypted, iv)
          * ```
          * @author [Stanley Wintergreen](https://github.com/kepocnhh)
          * @since 0.1.0
