@@ -47,6 +47,16 @@ class Symmetric(
         /**
          * Encrypt [decrypted] message using [key] and [iv].
          *
+         * Usage:
+         * ```
+         * val key: SecretKey = ...
+         * val decrypted: ByteArray = ...
+         * val enc: Symmetric.Encryption = ...
+         * val iv: ByteArray = ...
+         * val encrypted = enc.encrypt(key, decrypted, iv)
+         * File("foo.enc").writeBytes(encrypted)
+         * File("foo.iv").writeBytes(iv)
+         * ```
          * @author [Stanley Wintergreen](https://github.com/kepocnhh)
          * @since 0.1.0
          */
@@ -55,6 +65,14 @@ class Symmetric(
         /**
          * Decrypt [encrypted] message using [key] and [iv].
          *
+         * Usage:
+         * ```
+         * val key: SecretKey = ...
+         * val encrypted = File("foo.enc").readBytes()
+         * val iv = File("foo.iv").readBytes()
+         * val enc: Symmetric.Encryption = ...
+         * val decrypted = enc.decrypt(key, decrypted, iv)
+         * ```
          * @author [Stanley Wintergreen](https://github.com/kepocnhh)
          * @since 0.1.0
          */
@@ -71,6 +89,13 @@ class Symmetric(
         /**
          * Creates new [SecretKey] using [password] and [salt].
          *
+         * Usage:
+         * ```
+         * val generator: Symmetric.Generator = ...
+         * val password: CharArray = ...
+         * val salt = File("foo.enc").readBytes()
+         * val key = generator.toSecretKey(password, salt)
+         * ```
          * @author [Stanley Wintergreen](https://github.com/kepocnhh)
          * @since 0.1.0
          */

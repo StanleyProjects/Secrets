@@ -48,6 +48,14 @@ class Asymmetric(
         /**
          * Encrypt [decrypted] message using [key].
          *
+         * Usage:
+         * ```
+         * val key: PublicKey = ...
+         * val decrypted: ByteArray = ...
+         * val enc: Asymmetric.Encryption = ...
+         * val encrypted = enc.encrypt(key, decrypted)
+         * File("foo.enc").writeBytes(encrypted)
+         * ```
          * @author [Stanley Wintergreen](https://github.com/kepocnhh)
          * @since 0.1.0
          */
@@ -56,6 +64,13 @@ class Asymmetric(
         /**
          * Decrypt [encrypted] message using [key].
          *
+         * Usage:
+         * ```
+         * val key: PrivateKey = ...
+         * val encrypted = File("foo.enc").readBytes()
+         * val enc: Asymmetric.Encryption = ...
+         * val decrypted = enc.decrypt(key, decrypted)
+         * ```
          * @author [Stanley Wintergreen](https://github.com/kepocnhh)
          * @since 0.1.0
          */
@@ -72,6 +87,14 @@ class Asymmetric(
         /**
          * Sign [encoded] message using [key].
          *
+         * Usage:
+         * ```
+         * val key: PrivateKey = ...
+         * val encoded: ByteArray = ...
+         * val signing: Asymmetric.Signing = ...
+         * val signature = signing.sign(key, encoded)
+         * File("foo.sig").writeBytes(signature)
+         * ```
          * @author [Stanley Wintergreen](https://github.com/kepocnhh)
          * @since 0.1.0
          */
@@ -80,6 +103,14 @@ class Asymmetric(
         /**
          * Verify [signature] of [encoded] message using [key].
          *
+         * Usage:
+         * ```
+         * val key: PublicKey = ...
+         * val encoded: ByteArray = ...
+         * val signing: Asymmetric.Signing = ...
+         * val signature = File("foo.sig").readBytes()
+         * check(signing.verify(key, encoded, signature))
+         * ```
          * @author [Stanley Wintergreen](https://github.com/kepocnhh)
          * @since 0.1.0
          */
