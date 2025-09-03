@@ -4,6 +4,13 @@ import javax.crypto.Cipher
 import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
 
+/**
+ * Advanced Encryption Standard as specified by NIST in [FIPS 197](http://csrc.nist.gov/publications/fips/index.html).
+ * Cipher Block Chaining Mode, as defined in [FIPS PUB 81](http://csrc.nist.gov/publications/fips/index.html).
+ *
+ * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+ * @since 0.1.0
+ */
 class AESCBCEncryption(private val paddings: String) : Symmetric.Encryption {
     override fun encrypt(
         key: SecretKey,

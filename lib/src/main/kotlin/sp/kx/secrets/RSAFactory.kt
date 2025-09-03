@@ -6,6 +6,12 @@ import java.security.PublicKey
 import java.security.spec.PKCS8EncodedKeySpec
 import java.security.spec.X509EncodedKeySpec
 
+/**
+ * Implementation for decoding RSA keys.
+ *
+ * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+ * @since 0.1.0
+ */
 object RSAFactory : Asymmetric.Factory {
     override fun toPublicKey(encoded: ByteArray): PublicKey {
         val keyFactory = KeyFactory.getInstance("RSA")
