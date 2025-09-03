@@ -9,6 +9,7 @@ class Symmetric(
 ) {
     interface Factory {
         fun toSecretKey(encoded: ByteArray): SecretKey
+        fun newSecretKey(): SecretKey
     }
 
     interface Encryption {
