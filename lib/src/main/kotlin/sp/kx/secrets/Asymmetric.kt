@@ -10,8 +10,28 @@ import java.security.PublicKey
  * @since 0.1.0
  */
 class Asymmetric(
+    /**
+     * Decoding asymmetric keys.
+     *
+     * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+     * @since 0.1.0
+     */
     val factory: Factory,
+
+    /**
+     * Encryption using asymmetric keys.
+     *
+     * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+     * @since 0.1.0
+     */
     val enc: Encryption,
+
+    /**
+     * Signing using asymmetric keys.
+     *
+     * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+     * @since 0.1.0
+     */
     val signing: Signing,
 ) {
     /**
@@ -78,7 +98,7 @@ class Asymmetric(
     }
 
     /**
-     * An abstraction for signing asymmetric keys.
+     * An abstraction for signing using asymmetric keys.
      *
      * @author [Stanley Wintergreen](https://github.com/kepocnhh)
      * @since 0.1.0
@@ -118,6 +138,21 @@ class Asymmetric(
     }
 
     companion object {
+        /**
+         * Cryptography using RSA keys.
+         *
+         * Usage:
+         * ```
+         * val keyPair: KeyPair = ...
+         * val decrypted: ByteArray = ...
+         * val encrypted = Asymmetric.RSA.enc.encrypt(keyPair.public, decrypted)
+         * File("foo.enc").writeBytes(encrypted)
+         * val signature = Asymmetric.RSA.signing.sign(keyPair.private, decrypted)
+         * File("foo.sig").writeBytes(signature)
+         * ```
+         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+         * @since 0.1.0
+         */
         val RSA = Asymmetric(
             factory = RSAFactory,
             enc = RSAECBEncryption(paddings = "PKCS1Padding"),

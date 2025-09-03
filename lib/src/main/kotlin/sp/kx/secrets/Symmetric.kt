@@ -9,8 +9,28 @@ import javax.crypto.SecretKey
  * @since 0.1.0
  */
 class Symmetric(
+    /**
+     * Decoding symmetric keys.
+     *
+     * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+     * @since 0.1.0
+     */
     val factory: Factory,
+
+    /**
+     * Encryption using symmetric keys.
+     *
+     * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+     * @since 0.1.0
+     */
     val enc: Encryption,
+
+    /**
+     * Generating symmetric keys from a password.
+     *
+     * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+     * @since 0.1.0
+     */
     val generator: Generator,
 ) {
     /**
@@ -103,6 +123,19 @@ class Symmetric(
     }
 
     companion object {
+        /**
+         * Cryptography using AES keys.
+         *
+         * Usage:
+         * ```
+         * val key = Symmetric.AES.factory.newSecretKey()
+         * val decrypted: ByteArray = ...
+         * val iv: ByteArray = ...
+         * val encrypted = Symmetric.AES.enc.encrypt(key, decrypted, iv)
+         * ```
+         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
+         * @since 0.1.0
+         */
         val AES = Symmetric(
             factory = AESFactory,
             enc = AESCBCEncryption(paddings = "PKCS5Padding"),
