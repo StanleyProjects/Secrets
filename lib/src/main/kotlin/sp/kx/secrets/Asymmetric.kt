@@ -16,7 +16,7 @@ class Asymmetric(
      * @author [Stanley Wintergreen](https://github.com/kepocnhh)
      * @since 0.1.0
      */
-    val factory: Factory,
+    val keys: Keys,
 
     /**
      * Encryption using asymmetric keys.
@@ -40,7 +40,7 @@ class Asymmetric(
      * @author [Stanley Wintergreen](https://github.com/kepocnhh)
      * @since 0.1.0
      */
-    interface Factory {
+    interface Keys {
         /**
          * Decoding [PublicKey].
          *
@@ -154,7 +154,7 @@ class Asymmetric(
          * @since 0.1.0
          */
         val RSA = Asymmetric(
-            factory = RSAFactory,
+            keys = RSAKeys,
             enc = RSAECBEncryption(paddings = "PKCS1Padding"),
             signing = RSASigning(algorithm = "SHA256withRSA"),
         )
