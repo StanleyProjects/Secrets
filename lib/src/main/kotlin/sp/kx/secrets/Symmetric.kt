@@ -15,7 +15,7 @@ class Symmetric(
      * @author [Stanley Wintergreen](https://github.com/kepocnhh)
      * @since 0.1.0
      */
-    val factory: Factory,
+    val keys: Keys,
 
     /**
      * Encryption using symmetric keys.
@@ -39,7 +39,7 @@ class Symmetric(
      * @author [Stanley Wintergreen](https://github.com/kepocnhh)
      * @since 0.1.0
      */
-    interface Factory {
+    interface Keys {
         /**
          * Decoding [SecretKey].
          *
@@ -128,7 +128,7 @@ class Symmetric(
          *
          * Usage:
          * ```
-         * val key = Symmetric.AES.factory.newSecretKey()
+         * val key = Symmetric.AES.keys.newSecretKey()
          * val decrypted: ByteArray = ...
          * val iv: ByteArray = ...
          * val encrypted = Symmetric.AES.enc.encrypt(key, decrypted, iv)
@@ -137,7 +137,7 @@ class Symmetric(
          * @since 0.1.0
          */
         val AES = Symmetric(
-            factory = AESFactory,
+            keys = AESKeys,
             enc = AESCBCEncryption(paddings = "PKCS5Padding"),
             generator = PBEGenerator(
                 algorithm = "PBKDF2WithHmacSHA256",
