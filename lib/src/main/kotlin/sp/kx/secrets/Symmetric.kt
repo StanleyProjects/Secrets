@@ -9,12 +9,6 @@ import javax.crypto.SecretKey
  * @since 0.1.0
  */
 class Symmetric(
-    /**
-     * Decoding symmetric keys.
-     *
-     * @author [Stanley Wintergreen](https://github.com/kepocnhh)
-     * @since 0.1.0
-     */
     val keys: Keys,
 
     /**
@@ -33,27 +27,9 @@ class Symmetric(
      */
     val generator: Generator,
 ) {
-    /**
-     * An abstraction for decoding or creating symmetric keys.
-     *
-     * @author [Stanley Wintergreen](https://github.com/kepocnhh)
-     * @since 0.1.0
-     */
     interface Keys {
-        /**
-         * Decoding [SecretKey].
-         *
-         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
-         * @since 0.1.0
-         */
         fun toSecretKey(encoded: ByteArray): SecretKey
 
-        /**
-         * Creates new [SecretKey].
-         *
-         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
-         * @since 0.1.0
-         */
         fun newSecretKey(): SecretKey
     }
 

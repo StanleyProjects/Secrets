@@ -1,5 +1,6 @@
 package sp.kx.secrets
 
+import java.security.KeyStore
 import java.security.PrivateKey
 import java.security.PublicKey
 
@@ -10,13 +11,8 @@ import java.security.PublicKey
  * @since 0.1.0
  */
 class Asymmetric(
-    /**
-     * Decoding asymmetric keys.
-     *
-     * @author [Stanley Wintergreen](https://github.com/kepocnhh)
-     * @since 0.1.0
-     */
     val keys: Keys,
+    val keyStores: KeyStores,
 
     /**
      * Encryption using asymmetric keys.
@@ -34,28 +30,14 @@ class Asymmetric(
      */
     val signing: Signing,
 ) {
-    /**
-     * An abstraction for decoding asymmetric keys.
-     *
-     * @author [Stanley Wintergreen](https://github.com/kepocnhh)
-     * @since 0.1.0
-     */
     interface Keys {
-        /**
-         * Decoding [PublicKey].
-         *
-         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
-         * @since 0.1.0
-         */
         fun toPublicKey(encoded: ByteArray): PublicKey
 
-        /**
-         * Decoding [PrivateKey].
-         *
-         * @author [Stanley Wintergreen](https://github.com/kepocnhh)
-         * @since 0.1.0
-         */
         fun toPrivateKey(encoded: ByteArray): PrivateKey
+    }
+
+    interface KeyStores {
+        fun toKeyStore(encoded: ByteArray, password: CharArray): KeyStore
     }
 
     /**
@@ -155,6 +137,7 @@ class Asymmetric(
          */
         val RSA = Asymmetric(
             keys = RSAKeys,
+            keyStores = PKCS12KeyStores,
             enc = RSAECBEncryption(paddings = "PKCS1Padding"),
             signing = RSASigning(algorithm = "SHA256withRSA"),
         )
