@@ -1,5 +1,7 @@
 package sp.kx.secrets
 
+import javax.crypto.SecretKeyFactory
+import javax.crypto.spec.PBEKeySpec
 import org.bouncycastle.crypto.generators.Argon2BytesGenerator
 import org.bouncycastle.crypto.params.Argon2Parameters
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -33,6 +35,28 @@ internal object BytesGeneratorTest {
             generator.generateBytes(password, expected)
             val actual = BytesGenerator.Argon2.generate(password = password, specs = specs)
             assertTrue(expected.contentEquals(actual))
+        }
+    }
+
+    object PBKDF2 {
+        object HMAC {
+            object SHA256 {
+                @Test
+                fun generateTest() {
+                    val password = "foobarbaz".toCharArray()
+                    val salt = ByteArray(32) { 32.minus(it).toByte() }
+                    val specs = PBKDF2Specs(
+                        salt = salt,
+                        iterations = 200_000,
+                        keySize = 256,
+                    )
+                    val keyFactory = SecretKeyFactory.getInstance("pbkdf2withhmacsha256")
+                    val keySpec = PBEKeySpec(password, specs.salt, specs.iterations, specs.keySize)
+                    val expected = keyFactory.generateSecret(keySpec).encoded
+                    val actual = BytesGenerator.PBKDF2.HMAC.SHA256.generate(password = password, specs = specs)
+                    assertTrue(expected.contentEquals(actual))
+                }
+            }
         }
     }
 }
