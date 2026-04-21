@@ -3,12 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 repositories.mavenCentral()
 
 plugins {
-    id("application")
     id("org.jetbrains.kotlin.jvm")
-}
-
-application {
-    mainClass.set("sp.service.sample.AppKt")
 }
 
 tasks.getByName<JavaCompile>("compileJava") {
@@ -21,4 +16,9 @@ tasks.getByName<KotlinCompile>("compileKotlin") {
 
 dependencies {
     implementation(project(":lib"))
+}
+
+tasks.register<JavaExec>("run") {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass = "sp.service.sample.AppKt"
 }
