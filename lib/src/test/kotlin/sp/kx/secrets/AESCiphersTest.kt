@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 internal object AESCiphersTest {
     object GCM {
-        class NoPadding {
+        object NoPadding {
             @Test
             fun encryptTest() {
                 val expected = "foobarbaz".toByteArray(Charsets.UTF_8)

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 internal object RSACiphersTest {
     object ECB {
-        class PKCS1Padding {
+        object PKCS1Padding {
             @Test
             fun encryptTest() {
                 val expected = "foobarbaz".toByteArray(Charsets.UTF_8)
