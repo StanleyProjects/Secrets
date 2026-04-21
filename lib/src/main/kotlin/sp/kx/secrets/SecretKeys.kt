@@ -3,14 +3,10 @@ package sp.kx.secrets
 import javax.crypto.SecretKey
 import javax.crypto.spec.SecretKeySpec
 
-class SecretKeys private constructor(
-    val algorithm: String,
-) {
-    fun toSecretKey(encoded: ByteArray): SecretKey {
-        return SecretKeySpec(encoded, algorithm)
-    }
+fun ByteArray.aes(): SecretKey {
+    return SecretKeySpec(this, "aes")
+}
 
-    object HMAC {
-        val SHA512 = SecretKeys(algorithm = "hmacsha512")
-    }
+fun ByteArray.hmacsha512(): SecretKey {
+    return SecretKeySpec(this, "hmacsha512")
 }

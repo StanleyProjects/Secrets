@@ -3,13 +3,13 @@ package sp.service.sample
 import java.security.MessageDigest
 import java.util.Locale
 import org.bouncycastle.crypto.params.Argon2Parameters
-import sp.kx.secrets.AESCiphers
+import sp.kx.secrets.AES
 import sp.kx.secrets.Argon2Specs
 import sp.kx.secrets.BytesGenerator
 import sp.kx.secrets.GCMSpecs
-import sp.kx.secrets.Macs
-import sp.kx.secrets.SecretKeys
+import sp.kx.secrets.HMAC
 import sp.kx.secrets.aes
+import sp.kx.secrets.hmacsha512
 
 private fun Int.hex(locale: Locale = Locale.US): String {
     return String.format(locale, "%02x", and(0xff))
@@ -46,12 +46,12 @@ fun main() {
     val specs = GCMSpecs(tagSize = 128, iv = iv)
     //
     val expected = "foobarbaz".toByteArray(Charsets.UTF_8)
-    val encrypted = AESCiphers.GCM.NoPadding.encrypt(key = key, decrypted = expected, specs = specs)
+    val encrypted = AES.GCM.NoPadding.encrypt(key = key, decrypted = expected, specs = specs)
     println("encrypted: ${encrypted.copyOf(16).hex()}")
-    val actual = AESCiphers.GCM.NoPadding.decrypt(key = key, encrypted = encrypted, specs = specs)
+    val actual = AES.GCM.NoPadding.decrypt(key = key, encrypted = encrypted, specs = specs)
     check(expected.contentEquals(actual))
     //
     val md = MessageDigest.getInstance("sha256")
-    val signature = Macs.HMAC.SHA512.sign(key = SecretKeys.HMAC.SHA512.toSecretKey(md.digest(seed)), signee = expected)
+    val signature = HMAC.SHA512.sign(key = md.digest(seed).hmacsha512(), signee = expected)
     println("signature: ${signature.copyOf(16).hex()}")
 }

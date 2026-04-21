@@ -27,15 +27,15 @@ sealed interface BytesGenerator<T : Any> {
             return bytes
         }
     }
+}
 
-    object PBKDF2 {
-        object HMAC {
-            object SHA256 : BytesGenerator<PBKDF2Specs> {
-                override fun generate(password: CharArray, specs: PBKDF2Specs): ByteArray {
-                    val keyFactory = SecretKeyFactory.getInstance("pbkdf2withhmacsha256")
-                    val keySpec = PBEKeySpec(password, specs.salt, specs.iterations, specs.keySize)
-                    return keyFactory.generateSecret(keySpec).encoded
-                }
+object PBKDF2 {
+    object HMAC {
+        object SHA256 : BytesGenerator<PBKDF2Specs> {
+            override fun generate(password: CharArray, specs: PBKDF2Specs): ByteArray {
+                val keyFactory = SecretKeyFactory.getInstance("pbkdf2withhmacsha256")
+                val keySpec = PBEKeySpec(password, specs.salt, specs.iterations, specs.keySize)
+                return keyFactory.generateSecret(keySpec).encoded
             }
         }
     }
