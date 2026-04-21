@@ -1,12 +1,12 @@
 package sp.kx.secrets
 
 import javax.crypto.Mac
-import javax.crypto.spec.SecretKeySpec
+import javax.crypto.SecretKey
 
 class Macs private constructor(
     val algorithm: String,
 ) {
-    fun sign(key: SecretKeySpec, signee: ByteArray): ByteArray {
+    fun sign(key: SecretKey, signee: ByteArray): ByteArray {
         val mac = Mac.getInstance(algorithm)
         mac.init(key)
         return mac.doFinal(signee)
