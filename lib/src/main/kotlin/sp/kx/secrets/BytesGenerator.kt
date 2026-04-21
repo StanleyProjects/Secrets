@@ -1,9 +1,9 @@
 package sp.kx.secrets
 
-import javax.crypto.SecretKeyFactory
-import javax.crypto.spec.PBEKeySpec
 import org.bouncycastle.crypto.generators.Argon2BytesGenerator
 import org.bouncycastle.crypto.params.Argon2Parameters
+import javax.crypto.SecretKeyFactory
+import javax.crypto.spec.PBEKeySpec
 
 sealed interface BytesGenerator<T : Any> {
     fun generate(password: CharArray, specs: T): ByteArray

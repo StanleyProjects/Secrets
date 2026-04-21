@@ -19,12 +19,12 @@ class Argon2Specs(
         return when (other) {
             is Argon2Specs -> {
                 type == other.type &&
-                version == other.version &&
-                salt.contentEquals(other.salt) &&
-                iterations == other.iterations &&
-                memorySize == other.memorySize &&
-                parallelism == other.parallelism &&
-                keySize == other.keySize
+                    version == other.version &&
+                    salt.contentEquals(other.salt) &&
+                    iterations == other.iterations &&
+                    memorySize == other.memorySize &&
+                    parallelism == other.parallelism &&
+                    keySize == other.keySize
             }
             else -> false
         }

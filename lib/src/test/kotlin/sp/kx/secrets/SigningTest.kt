@@ -1,9 +1,9 @@
 package sp.kx.secrets
 
-import java.security.SecureRandom
-import java.security.Signature
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import java.security.SecureRandom
+import java.security.Signature
 
 object SigningTest {
     object SHA256ECDSA {

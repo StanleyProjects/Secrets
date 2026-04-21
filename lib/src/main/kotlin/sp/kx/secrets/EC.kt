@@ -1,5 +1,6 @@
 package sp.kx.secrets
 
+import org.bouncycastle.jce.ECNamedCurveTable
 import java.math.BigInteger
 import java.security.AlgorithmParameters
 import java.security.KeyFactory
@@ -16,7 +17,6 @@ import java.security.spec.ECPrivateKeySpec
 import java.security.spec.ECPublicKeySpec
 import java.security.spec.PKCS8EncodedKeySpec
 import java.security.spec.X509EncodedKeySpec
-import org.bouncycastle.jce.ECNamedCurveTable
 
 object EC {
     fun toPublicKey(encoded: ByteArray): PublicKey {

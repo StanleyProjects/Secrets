@@ -1,10 +1,10 @@
 package sp.kx.secrets
 
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 import java.security.KeyPairGenerator
 import java.security.SecureRandom
 import javax.crypto.Cipher
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
 
 internal object RSATest {
     object ECB {

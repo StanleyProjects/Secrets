@@ -15,8 +15,8 @@ class PBKDF2Specs(
         return when (other) {
             is PBKDF2Specs -> {
                 salt.contentEquals(other.salt) &&
-                iterations == other.iterations &&
-                keySize == other.keySize
+                    iterations == other.iterations &&
+                    keySize == other.keySize
             }
             else -> false
         }
