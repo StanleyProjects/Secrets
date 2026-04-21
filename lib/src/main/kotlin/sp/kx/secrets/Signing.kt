@@ -20,9 +20,12 @@ class Signing internal constructor(
         sig.update(signee)
         if (!sig.verify(signature)) TODO("Signing:verify")
     }
-}
 
-object SHA256 {
-    val ECDSA = Signing(algorithm = "sha256withecdsa")
-    val RSA = Signing(algorithm = "sha256withrsa")
+    object ECDSA {
+        val SHA256 = Signing(algorithm = "sha256withecdsa")
+    }
+
+    object RSA {
+        val SHA256 = Signing(algorithm = "sha256withrsa")
+    }
 }
