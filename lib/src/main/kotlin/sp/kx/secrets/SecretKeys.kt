@@ -18,3 +18,7 @@ class SecretKeys private constructor(
         val SHA512 = SecretKeys(algorithm = "hmacsha512")
     }
 }
+
+fun ByteArray.aes(): SecretKey {
+    return SecretKeySpec(this, "aes")
+}

@@ -2,7 +2,6 @@ package sp.service.sample
 
 import java.security.MessageDigest
 import java.util.Locale
-import javax.crypto.spec.SecretKeySpec
 import org.bouncycastle.crypto.params.Argon2Parameters
 import sp.kx.secrets.AESCiphers
 import sp.kx.secrets.Argon2Specs
@@ -10,6 +9,7 @@ import sp.kx.secrets.BytesGenerator
 import sp.kx.secrets.GCMSpecs
 import sp.kx.secrets.Macs
 import sp.kx.secrets.SecretKeys
+import sp.kx.secrets.aes
 
 private fun Int.hex(locale: Locale = Locale.US): String {
     return String.format(locale, "%02x", and(0xff))
@@ -38,7 +38,7 @@ fun main() {
         keySize = 32,
     )
     val seed = BytesGenerator.Argon2.generate(password = "foobarbaz".toCharArray(), seedSpecs)
-    val key = SecretKeys.AES.toSecretKey(seed)
+    val key = seed.aes()
     println("key: ${key.encoded.copyOf(16).hex()}")
     //
     val iv = ByteArray(12) { 12.minus(it).toByte() }
@@ -53,4 +53,5 @@ fun main() {
     //
     val md = MessageDigest.getInstance("sha256")
     val signature = Macs.HMAC.SHA512.sign(key = SecretKeys.HMAC.SHA512.toSecretKey(md.digest(seed)), signee = expected)
+    println("signature: ${signature.copyOf(16).hex()}")
 }
