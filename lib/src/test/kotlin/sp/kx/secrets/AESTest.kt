@@ -7,7 +7,7 @@ import javax.crypto.spec.SecretKeySpec
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-internal object AESCiphersTest {
+internal object AESTest {
     object GCM {
         object NoPadding {
             @Test
@@ -19,7 +19,7 @@ internal object AESCiphersTest {
                 val iv = ByteArray(12) { 12.minus(it).toByte() }
                 val specs = GCMSpecs(tagSize = 128, iv = iv)
                 //
-                val encrypted = AESCiphers.GCM.NoPadding.encrypt(key = key, decrypted = expected, specs = specs)
+                val encrypted = AES.GCM.NoPadding.encrypt(key = key, decrypted = expected, specs = specs)
                 val cipher = Cipher.getInstance("aes/gcm/nopadding")
                 cipher.init(Cipher.DECRYPT_MODE, key, GCMParameterSpec(specs.tagSize, specs.iv))
                 val decrypted = cipher.doFinal(encrypted)
@@ -39,7 +39,7 @@ internal object AESCiphersTest {
                 val cipher = Cipher.getInstance("aes/gcm/nopadding")
                 cipher.init(Cipher.ENCRYPT_MODE, key, GCMParameterSpec(specs.tagSize, specs.iv))
                 val encrypted = cipher.doFinal(expected)
-                val decrypted = AESCiphers.GCM.NoPadding.decrypt(key = key, encrypted = encrypted, specs = specs)
+                val decrypted = AES.GCM.NoPadding.decrypt(key = key, encrypted = encrypted, specs = specs)
                 //
                 assertTrue(expected.contentEquals(decrypted))
             }
@@ -57,7 +57,7 @@ internal object AESCiphersTest {
                 val iv = ByteArray(16) { 16.minus(it).toByte() }
                 val specs = IVSpecs(iv = iv)
                 //
-                val encrypted = AESCiphers.CBC.PKCS5Padding.encrypt(key = key, decrypted = expected, specs = specs)
+                val encrypted = AES.CBC.PKCS5Padding.encrypt(key = key, decrypted = expected, specs = specs)
                 val cipher = Cipher.getInstance("aes/cbc/pkcs5padding")
                 cipher.init(Cipher.DECRYPT_MODE, key, IvParameterSpec(specs.iv))
                 val decrypted = cipher.doFinal(encrypted)
@@ -77,7 +77,7 @@ internal object AESCiphersTest {
                 val cipher = Cipher.getInstance("aes/cbc/pkcs5padding")
                 cipher.init(Cipher.ENCRYPT_MODE, key, IvParameterSpec(specs.iv))
                 val encrypted = cipher.doFinal(expected)
-                val decrypted = AESCiphers.CBC.PKCS5Padding.decrypt(key = key, encrypted = encrypted, specs = specs)
+                val decrypted = AES.CBC.PKCS5Padding.decrypt(key = key, encrypted = encrypted, specs = specs)
                 //
                 assertTrue(expected.contentEquals(decrypted))
             }
