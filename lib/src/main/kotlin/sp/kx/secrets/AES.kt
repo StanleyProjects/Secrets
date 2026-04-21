@@ -4,8 +4,13 @@ import javax.crypto.Cipher
 import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.SecretKeySpec
 
 object AES {
+    fun toSecretKey(encoded: ByteArray): SecretKey {
+        return SecretKeySpec(encoded, "aes")
+    }
+
     sealed interface Ciphers<T : Any> {
         fun encrypt(key: SecretKey, decrypted: ByteArray, specs: T): ByteArray
         fun decrypt(key: SecretKey, encrypted: ByteArray, specs: T): ByteArray

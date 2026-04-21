@@ -36,24 +36,21 @@ object RSA {
         return kpg.generateKeyPair()
     }
 
-    sealed interface Ciphers {
-        fun encrypt(key: PublicKey, decrypted: ByteArray): ByteArray
-        fun decrypt(key: PrivateKey, encrypted: ByteArray): ByteArray
+    class Ciphers internal constructor(private val transformation: String) {
+        fun encrypt(key: PublicKey, decrypted: ByteArray): ByteArray {
+            val cipher = Cipher.getInstance(transformation)
+            cipher.init(Cipher.ENCRYPT_MODE, key)
+            return cipher.doFinal(decrypted)
+        }
+
+        fun decrypt(key: PrivateKey, encrypted: ByteArray): ByteArray {
+            val cipher = Cipher.getInstance(transformation)
+            cipher.init(Cipher.DECRYPT_MODE, key)
+            return cipher.doFinal(encrypted)
+        }
     }
 
     object ECB {
-        object PKCS1Padding : Ciphers {
-            override fun encrypt(key: PublicKey, decrypted: ByteArray): ByteArray {
-                val cipher = Cipher.getInstance("rsa/ecb/pkcs1padding")
-                cipher.init(Cipher.ENCRYPT_MODE, key)
-                return cipher.doFinal(decrypted)
-            }
-
-            override fun decrypt(key: PrivateKey, encrypted: ByteArray): ByteArray {
-                val cipher = Cipher.getInstance("rsa/ecb/pkcs1padding")
-                cipher.init(Cipher.DECRYPT_MODE, key)
-                return cipher.doFinal(encrypted)
-            }
-        }
+        val PKCS1Padding = Ciphers(transformation = "rsa/ecb/pkcs1padding")
     }
 }

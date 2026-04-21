@@ -10,15 +10,7 @@ class SecretKeys private constructor(
         return SecretKeySpec(encoded, algorithm)
     }
 
-    companion object {
-        val AES = SecretKeys(algorithm = "aes")
-    }
-
     object HMAC {
         val SHA512 = SecretKeys(algorithm = "hmacsha512")
     }
-}
-
-fun ByteArray.aes(): SecretKey {
-    return SecretKeySpec(this, "aes")
 }
