@@ -56,6 +56,7 @@ tasks.getByName<KotlinCompile>("compileTestKotlin") {
 }
 
 dependencies {
+    implementation("org.bouncycastle:bcpkix-jdk18on:1.84")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${Version.jupiter}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${Version.jupiter}")
 }
