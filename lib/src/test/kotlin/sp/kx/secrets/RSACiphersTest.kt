@@ -6,7 +6,7 @@ import javax.crypto.Cipher
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-internal object RSACiphersTest {
+internal object RSATest {
     object ECB {
         object PKCS1Padding {
             @Test
@@ -19,7 +19,7 @@ internal object RSACiphersTest {
                 kpg.initialize(4_096, random)
                 val keyPair = kpg.generateKeyPair()
                 //
-                val encrypted = RSACiphers.ECB.PKCS1Padding.encrypt(keyPair.public, expected)
+                val encrypted = RSA.ECB.PKCS1Padding.encrypt(keyPair.public, expected)
                 val cipher = Cipher.getInstance("rsa/ecb/pkcs1padding")
                 cipher.init(Cipher.DECRYPT_MODE, keyPair.private)
                 val decrypted = cipher.doFinal(encrypted)
@@ -40,7 +40,7 @@ internal object RSACiphersTest {
                 val cipher = Cipher.getInstance("rsa/ecb/pkcs1padding")
                 cipher.init(Cipher.ENCRYPT_MODE, keyPair.public)
                 val encrypted = cipher.doFinal(expected)
-                val decrypted = RSACiphers.ECB.PKCS1Padding.decrypt(keyPair.private, encrypted)
+                val decrypted = RSA.ECB.PKCS1Padding.decrypt(keyPair.private, encrypted)
                 //
                 assertTrue(expected.contentEquals(decrypted))
             }
