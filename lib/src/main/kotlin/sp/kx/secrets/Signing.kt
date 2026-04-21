@@ -1,0 +1,28 @@
+package sp.kx.secrets
+
+import java.security.PrivateKey
+import java.security.PublicKey
+import java.security.Signature
+
+class Signing internal constructor(
+    val algorithm: String,
+) {
+    fun sign(key: PrivateKey, signee: ByteArray): ByteArray {
+        val sig = Signature.getInstance(algorithm)
+        sig.initSign(key)
+        sig.update(signee)
+        return sig.sign()
+    }
+
+    fun verify(key: PublicKey, signee: ByteArray, signature: ByteArray) {
+        val sig = Signature.getInstance(algorithm)
+        sig.initVerify(key)
+        sig.update(signee)
+        if (!sig.verify(signature)) TODO("Signing:verify")
+    }
+}
+
+object SHA256 {
+    val ECDSA = Signing(algorithm = "sha256withecdsa")
+    val RSA = Signing(algorithm = "sha256withrsa")
+}
