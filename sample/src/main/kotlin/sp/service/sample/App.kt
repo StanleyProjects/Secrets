@@ -1,9 +1,11 @@
 package sp.service.sample
 
-import java.security.SecureRandom
 import java.util.Locale
-import javax.crypto.KeyGenerator
+import javax.crypto.spec.SecretKeySpec
+import org.bouncycastle.crypto.params.Argon2Parameters
 import sp.kx.secrets.AESCiphers
+import sp.kx.secrets.Argon2Specs
+import sp.kx.secrets.BytesGenerator
 import sp.kx.secrets.GCMSpecs
 
 private fun Int.hex(locale: Locale = Locale.US): String {
@@ -21,17 +23,23 @@ private fun ByteArray.hex(locale: Locale = Locale.US): String {
 }
 
 fun main() {
-    val seed = ByteArray(32) { 32.minus(it).toByte() }
-    println("seed: ${seed.copyOf(16).hex()}")
-    val random = SecureRandom(seed)
-    //
-    val generator = KeyGenerator.getInstance("AES")
-    generator.init(256, random)
-    val key = generator.generateKey()
+    val salt = ByteArray(32) { 32.minus(it).toByte() }
+    println("salt: ${salt.copyOf(16).hex()}")
+    val seedSpecs = Argon2Specs(
+        type = Argon2Parameters.ARGON2_id,
+        version = Argon2Parameters.ARGON2_VERSION_13,
+        salt = salt,
+        iterations = 3,
+        memorySize = 32_768,
+        parallelism = 1,
+        keySize = 32,
+    )
+    val seed = BytesGenerator.Argon2.generate(password = "foobarbaz".toCharArray(), seedSpecs)
+    val key = SecretKeySpec(seed, "aes")
     println("key: ${key.encoded.copyOf(16).hex()}")
     //
     val iv = ByteArray(12) { 12.minus(it).toByte() }
-    println("iv: ${iv.copyOf(16).hex()}")
+    println("iv: ${iv.hex()}")
     val specs = GCMSpecs(tagSize = 128, iv = iv)
     //
     val expected = "foobarbaz".toByteArray(Charsets.UTF_8)

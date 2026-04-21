@@ -16,6 +16,7 @@ tasks.getByName<KotlinCompile>("compileKotlin") {
 
 dependencies {
     implementation(project(":lib"))
+    implementation("org.bouncycastle:bcpkix-jdk18on:1.84")
 }
 
 tasks.register<JavaExec>("run") {
