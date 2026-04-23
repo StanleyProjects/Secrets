@@ -4,7 +4,7 @@ import java.security.PrivateKey
 import java.security.PublicKey
 import javax.crypto.KeyAgreement
 
-class KeyAgreements internal constructor(
+class Shared internal constructor(
     val algorithm: String,
 ) {
     fun getSharedBytes(thisKey: PrivateKey, thatKey: PublicKey): ByteArray {
@@ -15,6 +15,6 @@ class KeyAgreements internal constructor(
     }
 
     companion object {
-        val ECDH = KeyAgreements(algorithm = "ecdh")
+        val ECDH = Shared(algorithm = "ecdh")
     }
 }
