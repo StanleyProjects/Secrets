@@ -27,8 +27,8 @@ dependencies {
 
 ## Snapshot
 
-`0.0.1-SNAPSHOT`
-| [GitHub](https://github.com/StanleyProjects/Secrets/releases/tag/0.0.1-SNAPSHOT)
+`0.3.2-SNAPSHOT`
+| [GitHub](https://github.com/StanleyProjects/Secrets/releases/tag/0.3.2-SNAPSHOT)
 | [Maven](https://central.sonatype.com/repository/maven-snapshots/com/github/kepocnhh/Secrets/maven-metadata.xml)
 | [Key](https://StanleyProjects.github.io/debug-public.pem)
 
@@ -44,7 +44,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.kepocnhh:Secrets:0.0.1-SNAPSHOT")
+    implementation("com.github.kepocnhh:Secrets:0.3.2-SNAPSHOT")
 }
 ```
 
