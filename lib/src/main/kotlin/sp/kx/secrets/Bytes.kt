@@ -5,10 +5,10 @@ import org.bouncycastle.crypto.params.Argon2Parameters
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 
-sealed interface BytesGenerator<T : Any> {
+sealed interface Bytes<T : Any> {
     fun generate(password: CharArray, specs: T): ByteArray
 
-    object Argon2 : BytesGenerator<Argon2Specs> {
+    object Argon2 : Bytes<Argon2Specs> {
         override fun generate(
             password: CharArray,
             specs: Argon2Specs,
@@ -27,15 +27,15 @@ sealed interface BytesGenerator<T : Any> {
             return bytes
         }
     }
-}
 
-object PBKDF2 {
-    object HMAC {
-        object SHA256 : BytesGenerator<PBKDF2Specs> {
-            override fun generate(password: CharArray, specs: PBKDF2Specs): ByteArray {
-                val keyFactory = SecretKeyFactory.getInstance("pbkdf2withhmacsha256")
-                val keySpec = PBEKeySpec(password, specs.salt, specs.iterations, specs.keySize)
-                return keyFactory.generateSecret(keySpec).encoded
+    object PBKDF2 {
+        object HMAC {
+            object SHA256 : Bytes<PBKDF2Specs> {
+                override fun generate(password: CharArray, specs: PBKDF2Specs): ByteArray {
+                    val keyFactory = SecretKeyFactory.getInstance("pbkdf2withhmacsha256")
+                    val keySpec = PBEKeySpec(password, specs.salt, specs.iterations, specs.keySize)
+                    return keyFactory.generateSecret(keySpec).encoded
+                }
             }
         }
     }

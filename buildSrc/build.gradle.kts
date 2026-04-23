@@ -5,5 +5,5 @@ plugins {
 }
 
 dependencies {
-    implementation("com.github.kepocnhh:Gradlex:0.1.0")
+    implementation("com.github.kepocnhh:Gradlex:0.3.0")
 }

@@ -3,7 +3,7 @@ package sp.kx.secrets
 import javax.crypto.Mac
 import javax.crypto.SecretKey
 
-class Macs internal constructor(
+class Macs private constructor(
     val algorithm: String,
 ) {
     fun sign(key: SecretKey, signee: ByteArray): ByteArray {
@@ -11,8 +11,8 @@ class Macs internal constructor(
         mac.init(key)
         return mac.doFinal(signee)
     }
-}
 
-object HMAC {
-    val SHA512 = Macs(algorithm = "hmacsha512")
+    object HMAC {
+        val SHA512 = Macs(algorithm = "hmacsha512")
+    }
 }

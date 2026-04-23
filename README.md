@@ -9,6 +9,7 @@ Classes for working with encryption.
 | [GitHub](https://github.com/StanleyProjects/Secrets/releases/tag/0.1.0)
 | [Maven](https://central.sonatype.com/artifact/com.github.kepocnhh/Secrets/0.1.0)
 | [Docs](https://StanleyProjects.github.io/Secrets/docs/0.1.0)
+| [Key](https://StanleyProjects.github.io/release-public.pem)
 
 ### Build
 ```
@@ -26,9 +27,10 @@ dependencies {
 
 ## Snapshot
 
-> GitHub [0.0.1-SNAPSHOT](https://github.com/StanleyProjects/Secrets/releases/tag/0.0.1-SNAPSHOT) release
->
-> Maven [metadata](https://central.sonatype.com/repository/maven-snapshots/com/github/kepocnhh/Secrets/maven-metadata.xml)
+`0.0.1-SNAPSHOT`
+| [GitHub](https://github.com/StanleyProjects/Secrets/releases/tag/0.0.1-SNAPSHOT)
+| [Maven](https://central.sonatype.com/repository/maven-snapshots/com/github/kepocnhh/Secrets/maven-metadata.xml)
+| [Key](https://StanleyProjects.github.io/debug-public.pem)
 
 ### Build
 ```
@@ -50,9 +52,9 @@ dependencies {
 
 ## Unstable
 
-> GitHub [0.3.0u-SNAPSHOT](https://github.com/StanleyProjects/Secrets/releases/tag/0.3.0u-SNAPSHOT) release
->
-> Maven [metadata](https://central.sonatype.com/repository/maven-snapshots/com/github/kepocnhh/Secrets/maven-metadata.xml)
+`0.3.1u-SNAPSHOT`
+| [GitHub](https://github.com/StanleyProjects/Secrets/releases/tag/0.3.1u-SNAPSHOT)
+| [Maven](https://central.sonatype.com/repository/maven-snapshots/com/github/kepocnhh/Secrets/maven-metadata.xml)
 
 ### Build
 ```
@@ -66,7 +68,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.kepocnhh:Secrets:0.3.0u-SNAPSHOT")
+    implementation("com.github.kepocnhh:Secrets:0.3.1u-SNAPSHOT")
 }
 ```
 
