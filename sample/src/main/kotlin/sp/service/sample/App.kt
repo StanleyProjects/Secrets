@@ -37,7 +37,7 @@ fun main() {
         keySize = 32,
     )
     val seed = Bytes.Argon2.generate(password = "foobarbaz".toCharArray(), seedSpecs)
-    val key = Keys.AES.toSecretKey(seed)
+    val key = Keys.AES + seed
     println("key: ${key.encoded.copyOf(16).hex()}")
     //
     val iv = ByteArray(12) { 12.minus(it).toByte() }
@@ -51,6 +51,6 @@ fun main() {
     check(expected.contentEquals(actual))
     //
     val md = MessageDigest.getInstance("sha256")
-    val signature = Macs.HMAC.SHA512.sign(key = Keys.HMAC.SHA512.toSecretKey(md.digest(seed)), signee = expected)
+    val signature = Macs.HMAC.SHA512.sign(key = Keys.HMAC.SHA512 + md.digest(seed), signee = expected)
     println("signature: ${signature.copyOf(16).hex()}")
 }

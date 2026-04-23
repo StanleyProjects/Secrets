@@ -8,6 +8,10 @@ class Keys private constructor(val algorithm: String) {
         return SecretKeySpec(encoded, algorithm)
     }
 
+    operator fun plus(encoded: ByteArray): SecretKey {
+        return SecretKeySpec(encoded, algorithm)
+    }
+
     companion object {
         val AES = Keys(algorithm = "aes")
     }
