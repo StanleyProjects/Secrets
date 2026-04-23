@@ -2,12 +2,14 @@ package sp.service.sample
 
 import org.bouncycastle.crypto.params.Argon2Parameters
 import sp.kx.secrets.Argon2Specs
+import sp.kx.secrets.AsyKeys
 import sp.kx.secrets.Bytes
 import sp.kx.secrets.Ciphers
 import sp.kx.secrets.GCMSpecs
 import sp.kx.secrets.Keys
 import sp.kx.secrets.Macs
 import java.security.MessageDigest
+import java.security.SecureRandom
 import java.util.Locale
 
 private fun Int.hex(locale: Locale = Locale.US): String {
@@ -53,4 +55,10 @@ fun main() {
     val md = MessageDigest.getInstance("sha256")
     val signature = Macs.HMAC.SHA512.sign(key = Keys.HMAC.SHA512 + md.digest(seed), signee = expected)
     println("signature: ${signature.copyOf(16).hex()}")
+    val random: SecureRandom = SecureRandom.getInstanceStrong()
+    val keyPair = AsyKeys.RSA.newKeyPair(random = random, keySize = 4096)
+    val pub = AsyKeys.RSA + keyPair.public.encoded
+    println("pub:sha256: ${pub.encoded.let(md::digest).hex()}")
+    val pk = AsyKeys.RSA - keyPair.private.encoded
+    println("pk:sha256: ${pk.encoded.let(md::digest).hex()}")
 }

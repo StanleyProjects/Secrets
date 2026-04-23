@@ -22,6 +22,16 @@ abstract class AsyKeys private constructor(val algorithm: String) {
         return kf.generatePrivate(PKCS8EncodedKeySpec(encoded))
     }
 
+    operator fun plus(encoded: ByteArray): PublicKey {
+        val kf = KeyFactory.getInstance(algorithm)
+        return kf.generatePublic(X509EncodedKeySpec(encoded))
+    }
+
+    operator fun minus(encoded: ByteArray): PrivateKey {
+        val kf = KeyFactory.getInstance(algorithm)
+        return kf.generatePrivate(PKCS8EncodedKeySpec(encoded))
+    }
+
     object RSA : AsyKeys(algorithm = "rsa") {
         fun getPublicKey(key: PrivateKey): PublicKey {
             if (key !is RSAPrivateCrtKey) TODO("AsyKeys:RSA:getPublicKey")
