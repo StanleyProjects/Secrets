@@ -50,9 +50,9 @@ dependencies {
 
 ## Unstable
 
-> GitHub [0.3.0u-SNAPSHOT](https://github.com/StanleyProjects/Secrets/releases/tag/0.3.0u-SNAPSHOT) release
->
-> Maven [metadata](https://central.sonatype.com/repository/maven-snapshots/com/github/kepocnhh/Secrets/maven-metadata.xml)
+`0.3.0u-SNAPSHOT`
+| [GitHub](https://github.com/StanleyProjects/Secrets/releases/tag/0.3.0u-SNAPSHOT)
+| [Maven](https://central.sonatype.com/repository/maven-snapshots/com/github/kepocnhh/Secrets/maven-metadata.xml)
 
 ### Build
 ```
