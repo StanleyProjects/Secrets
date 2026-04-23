@@ -13,6 +13,8 @@ class KeyAgreements internal constructor(
         ka.doPhase(thatKey, true)
         return ka.generateSecret()
     }
-}
 
-val ECDH = KeyAgreements(algorithm = "ecdh")
+    companion object {
+        val ECDH = KeyAgreements(algorithm = "ecdh")
+    }
+}

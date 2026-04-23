@@ -35,22 +35,4 @@ object RSA {
         kpg.initialize(keySize, random)
         return kpg.generateKeyPair()
     }
-
-    class Ciphers internal constructor(private val transformation: String) {
-        fun encrypt(key: PublicKey, decrypted: ByteArray): ByteArray {
-            val cipher = Cipher.getInstance(transformation)
-            cipher.init(Cipher.ENCRYPT_MODE, key)
-            return cipher.doFinal(decrypted)
-        }
-
-        fun decrypt(key: PrivateKey, encrypted: ByteArray): ByteArray {
-            val cipher = Cipher.getInstance(transformation)
-            cipher.init(Cipher.DECRYPT_MODE, key)
-            return cipher.doFinal(encrypted)
-        }
-    }
-
-    object ECB {
-        val PKCS1Padding = Ciphers(transformation = "rsa/ecb/pkcs1padding")
-    }
 }

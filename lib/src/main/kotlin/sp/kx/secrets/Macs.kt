@@ -11,8 +11,8 @@ class Macs internal constructor(
         mac.init(key)
         return mac.doFinal(signee)
     }
-}
 
-object HMAC {
-    val SHA512 = Macs(algorithm = "hmacsha512")
+    object HMAC {
+        val SHA512 = Macs(algorithm = "hmacsha512")
+    }
 }
