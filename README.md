@@ -9,6 +9,7 @@ Classes for working with encryption.
 | [GitHub](https://github.com/StanleyProjects/Secrets/releases/tag/0.1.0)
 | [Maven](https://central.sonatype.com/artifact/com.github.kepocnhh/Secrets/0.1.0)
 | [Docs](https://StanleyProjects.github.io/Secrets/docs/0.1.0)
+| [Key](https://StanleyProjects.github.io/release-public.pem)
 
 ### Build
 ```
