@@ -4,7 +4,7 @@ import java.security.PrivateKey
 import java.security.PublicKey
 import javax.crypto.Cipher
 
-class AsyCiphers internal constructor(private val transformation: String) {
+class AsyCiphers private constructor(private val transformation: String) {
     fun encrypt(key: PublicKey, decrypted: ByteArray): ByteArray {
         val cipher = Cipher.getInstance(transformation)
         cipher.init(Cipher.ENCRYPT_MODE, key)

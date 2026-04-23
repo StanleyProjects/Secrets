@@ -4,7 +4,7 @@ import java.security.PrivateKey
 import java.security.PublicKey
 import java.security.Signature
 
-class Signing internal constructor(
+class Signing private constructor(
     val algorithm: String,
 ) {
     fun sign(key: PrivateKey, signee: ByteArray): ByteArray {
