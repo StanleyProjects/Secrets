@@ -26,9 +26,10 @@ dependencies {
 
 ## Snapshot
 
-> GitHub [0.0.1-SNAPSHOT](https://github.com/StanleyProjects/Secrets/releases/tag/0.0.1-SNAPSHOT) release
->
-> Maven [metadata](https://central.sonatype.com/repository/maven-snapshots/com/github/kepocnhh/Secrets/maven-metadata.xml)
+`0.0.1-SNAPSHOT`
+| [GitHub](https://github.com/StanleyProjects/Secrets/releases/tag/0.0.1-SNAPSHOT)
+| [Maven](https://central.sonatype.com/repository/maven-snapshots/com/github/kepocnhh/Secrets/maven-metadata.xml)
+| [Key](https://StanleyProjects.github.io/debug-public.pem)
 
 ### Build
 ```
