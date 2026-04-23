@@ -52,8 +52,8 @@ dependencies {
 
 ## Unstable
 
-`0.3.0u-SNAPSHOT`
-| [GitHub](https://github.com/StanleyProjects/Secrets/releases/tag/0.3.0u-SNAPSHOT)
+`0.3.1u-SNAPSHOT`
+| [GitHub](https://github.com/StanleyProjects/Secrets/releases/tag/0.3.1u-SNAPSHOT)
 | [Maven](https://central.sonatype.com/repository/maven-snapshots/com/github/kepocnhh/Secrets/maven-metadata.xml)
 
 ### Build
@@ -68,7 +68,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.kepocnhh:Secrets:0.3.0u-SNAPSHOT")
+    implementation("com.github.kepocnhh:Secrets:0.3.1u-SNAPSHOT")
 }
 ```
 
