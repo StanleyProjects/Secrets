@@ -33,7 +33,7 @@ internal object BytesGeneratorTest {
             generator.init(params)
             val expected = ByteArray(specs.keySize)
             generator.generateBytes(password, expected)
-            val actual = BytesGenerator.Argon2.generate(password = password, specs = specs)
+            val actual = Bytes.Argon2.generate(password = password, specs = specs)
             assertTrue(expected.contentEquals(actual))
         }
     }

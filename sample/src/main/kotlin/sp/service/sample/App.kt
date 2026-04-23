@@ -5,7 +5,7 @@ import java.util.Locale
 import org.bouncycastle.crypto.params.Argon2Parameters
 import sp.kx.secrets.AES
 import sp.kx.secrets.Argon2Specs
-import sp.kx.secrets.BytesGenerator
+import sp.kx.secrets.Bytes
 import sp.kx.secrets.GCMSpecs
 import sp.kx.secrets.HMAC
 import sp.kx.secrets.aes
@@ -37,7 +37,7 @@ fun main() {
         parallelism = 1,
         keySize = 32,
     )
-    val seed = BytesGenerator.Argon2.generate(password = "foobarbaz".toCharArray(), seedSpecs)
+    val seed = Bytes.Argon2.generate(password = "foobarbaz".toCharArray(), seedSpecs)
     val key = seed.aes()
     println("key: ${key.encoded.copyOf(16).hex()}")
     //
