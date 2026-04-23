@@ -15,20 +15,8 @@ import java.security.spec.ECParameterSpec
 import java.security.spec.ECPoint
 import java.security.spec.ECPrivateKeySpec
 import java.security.spec.ECPublicKeySpec
-import java.security.spec.PKCS8EncodedKeySpec
-import java.security.spec.X509EncodedKeySpec
 
 object EC {
-    fun toPublicKey(encoded: ByteArray): PublicKey {
-        val kf = KeyFactory.getInstance("ec")
-        return kf.generatePublic(X509EncodedKeySpec(encoded))
-    }
-
-    fun toPrivateKey(encoded: ByteArray): PrivateKey {
-        val kf = KeyFactory.getInstance("ec")
-        return kf.generatePrivate(PKCS8EncodedKeySpec(encoded))
-    }
-
     class Keys internal constructor(name: String) {
         private val spec = ECNamedCurveTable.getParameterSpec(name)
 

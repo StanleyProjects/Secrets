@@ -7,22 +7,9 @@ import java.security.PrivateKey
 import java.security.PublicKey
 import java.security.SecureRandom
 import java.security.interfaces.RSAPrivateCrtKey
-import java.security.spec.PKCS8EncodedKeySpec
 import java.security.spec.RSAPublicKeySpec
-import java.security.spec.X509EncodedKeySpec
-import javax.crypto.Cipher
 
 object RSA {
-    fun toPublicKey(encoded: ByteArray): PublicKey {
-        val kf = KeyFactory.getInstance("rsa")
-        return kf.generatePublic(X509EncodedKeySpec(encoded))
-    }
-
-    fun toPrivateKey(encoded: ByteArray): PrivateKey {
-        val kf = KeyFactory.getInstance("rsa")
-        return kf.generatePrivate(PKCS8EncodedKeySpec(encoded))
-    }
-
     fun getPublicKey(key: PrivateKey): PublicKey {
         if (key !is RSAPrivateCrtKey) TODO("RSA:getPublicKey")
         val kf = KeyFactory.getInstance("rsa")
