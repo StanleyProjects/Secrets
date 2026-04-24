@@ -29,4 +29,16 @@ class PBKDF2Specs(
             keySize,
         )
     }
+
+    fun copy(
+        salt: ByteArray = this.salt.copyOf(),
+        iterations: Int = this.iterations,
+        keySize: Int = this.keySize,
+    ): PBKDF2Specs {
+        return PBKDF2Specs(
+            salt = salt,
+            iterations = iterations,
+            keySize = keySize,
+        )
+    }
 }
