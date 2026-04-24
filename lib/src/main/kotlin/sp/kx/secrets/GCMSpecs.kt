@@ -23,4 +23,14 @@ class GCMSpecs(
             iv.contentHashCode(),
         )
     }
+
+    fun copy(
+        tagSize: Int = this.tagSize,
+        iv: ByteArray = this.iv,
+    ): GCMSpecs {
+        return GCMSpecs(
+            tagSize = tagSize,
+            iv = iv,
+        )
+    }
 }
