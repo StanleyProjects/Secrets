@@ -39,6 +39,7 @@ class ECKeys internal constructor(name: String) {
         return kf.generatePublic(ECPublicKeySpec(w, key.params))
     }
 
+    @Suppress("MagicNumber")
     fun getPrivateKey(magnitude: ByteArray): PrivateKey {
         val ap = AlgorithmParameters.getInstance("ec")
         ap.init(ECGenParameterSpec(spec.name))

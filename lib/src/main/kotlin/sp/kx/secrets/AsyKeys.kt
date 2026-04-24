@@ -11,6 +11,7 @@ import java.security.spec.PKCS8EncodedKeySpec
 import java.security.spec.RSAPublicKeySpec
 import java.security.spec.X509EncodedKeySpec
 
+@Suppress("UnnecessaryAbstractClass")
 abstract class AsyKeys private constructor(val algorithm: String) {
     fun toPublicKey(encoded: ByteArray): PublicKey {
         val kf = KeyFactory.getInstance(algorithm)

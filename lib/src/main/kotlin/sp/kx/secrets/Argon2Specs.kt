@@ -2,6 +2,7 @@ package sp.kx.secrets
 
 import java.util.Objects
 
+@Suppress("LongParameterList")
 class Argon2Specs(
     val type: Int,
     val version: Int,
@@ -12,7 +13,14 @@ class Argon2Specs(
     val keySize: Int,
 ) {
     override fun toString(): String {
-        return "Argon2Specs(type: $type, version: $version, salt:size: ${salt.size}, iterations: $iterations, memorySize: $memorySize, parallelism: $parallelism, keySize: $keySize)"
+        return "Argon2Specs(" +
+            "type: $type, " +
+            "version: $version, " +
+            "salt:size: ${salt.size}, " +
+            "iterations: $iterations, " +
+            "memorySize: $memorySize, " +
+            "parallelism: $parallelism, " +
+            "keySize: $keySize)"
     }
 
     override fun equals(other: Any?): Boolean {
