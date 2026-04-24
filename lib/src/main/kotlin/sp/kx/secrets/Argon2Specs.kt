@@ -41,4 +41,24 @@ class Argon2Specs(
             keySize,
         )
     }
+
+    fun copy(
+        type: Int = this.type,
+        version: Int = this.version,
+        salt: ByteArray = this.salt,
+        iterations: Int = this.iterations,
+        memorySize: Int = this.memorySize,
+        parallelism: Int = this.parallelism,
+        keySize: Int = this.keySize,
+    ): Argon2Specs {
+        return Argon2Specs(
+            type = type,
+            version = version,
+            salt = salt,
+            iterations = iterations,
+            memorySize = memorySize,
+            parallelism = parallelism,
+            keySize = keySize,
+        )
+    }
 }
