@@ -26,7 +26,7 @@ class GCMSpecs(
 
     fun copy(
         tagSize: Int = this.tagSize,
-        iv: ByteArray = this.iv,
+        iv: ByteArray = this.iv.copyOf(),
     ): GCMSpecs {
         return GCMSpecs(
             tagSize = tagSize,

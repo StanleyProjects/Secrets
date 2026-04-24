@@ -17,4 +17,12 @@ class IVSpecs(
     override fun hashCode(): Int {
         return iv.contentHashCode()
     }
+
+    fun copy(
+        iv: ByteArray = this.iv.copyOf(),
+    ): IVSpecs {
+        return IVSpecs(
+            iv = iv,
+        )
+    }
 }

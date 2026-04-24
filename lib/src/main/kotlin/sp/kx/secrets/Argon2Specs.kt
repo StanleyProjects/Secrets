@@ -45,7 +45,7 @@ class Argon2Specs(
     fun copy(
         type: Int = this.type,
         version: Int = this.version,
-        salt: ByteArray = this.salt,
+        salt: ByteArray = this.salt.copyOf(),
         iterations: Int = this.iterations,
         memorySize: Int = this.memorySize,
         parallelism: Int = this.parallelism,
