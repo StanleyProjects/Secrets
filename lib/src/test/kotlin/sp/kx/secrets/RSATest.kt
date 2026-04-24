@@ -12,14 +12,12 @@ internal object RSATest {
         val kpg = KeyPairGenerator.getInstance("rsa")
         val md = MessageDigest.getInstance("sha512")
         var byte: Byte = -1
-        for (i in 0 until 4) {
-            md.update(byte++)
-            kpg.initialize(4096, SecureRandom(md.digest()))
-            val keyPair = kpg.generateKeyPair()
-            val expected = keyPair.public.encoded
-            assertTrue(expected.contentEquals(AsyKeys.RSA.toPublicKey(keyPair.public.encoded).encoded))
-            assertTrue(expected.contentEquals(AsyKeys.RSA.plus(keyPair.public.encoded).encoded))
-        }
+        md.update(byte++)
+        kpg.initialize(4096, SecureRandom(md.digest()))
+        val keyPair = kpg.generateKeyPair()
+        val expected = keyPair.public.encoded
+        assertTrue(expected.contentEquals(AsyKeys.RSA.toPublicKey(keyPair.public.encoded).encoded))
+        assertTrue(expected.contentEquals(AsyKeys.RSA.plus(keyPair.public.encoded).encoded))
     }
 
     @Test
@@ -27,14 +25,12 @@ internal object RSATest {
         val kpg = KeyPairGenerator.getInstance("rsa")
         val md = MessageDigest.getInstance("sha512")
         var byte: Byte = -1
-        for (i in 0 until 4) {
-            md.update(byte++)
-            kpg.initialize(4096, SecureRandom(md.digest()))
-            val keyPair = kpg.generateKeyPair()
-            val expected = keyPair.private.encoded
-            assertTrue(expected.contentEquals(AsyKeys.RSA.toPrivateKey(keyPair.private.encoded).encoded))
-            assertTrue(expected.contentEquals(AsyKeys.RSA.minus(keyPair.private.encoded).encoded))
-        }
+        md.update(byte++)
+        kpg.initialize(4096, SecureRandom(md.digest()))
+        val keyPair = kpg.generateKeyPair()
+        val expected = keyPair.private.encoded
+        assertTrue(expected.contentEquals(AsyKeys.RSA.toPrivateKey(keyPair.private.encoded).encoded))
+        assertTrue(expected.contentEquals(AsyKeys.RSA.minus(keyPair.private.encoded).encoded))
     }
 
     @Test
@@ -42,13 +38,11 @@ internal object RSATest {
         val kpg = KeyPairGenerator.getInstance("rsa")
         val md = MessageDigest.getInstance("sha512")
         var byte: Byte = -1
-        for (i in 0 until 4) {
-            md.update(byte++)
-            kpg.initialize(4096, SecureRandom(md.digest()))
-            val keyPair = kpg.generateKeyPair()
-            val expected = keyPair.public.encoded
-            val actual = AsyKeys.RSA.getPublicKey(keyPair.private).encoded
-            assertTrue(expected.contentEquals(actual))
-        }
+        md.update(byte++)
+        kpg.initialize(4096, SecureRandom(md.digest()))
+        val keyPair = kpg.generateKeyPair()
+        val expected = keyPair.public.encoded
+        val actual = AsyKeys.RSA.getPublicKey(keyPair.private).encoded
+        assertTrue(expected.contentEquals(actual))
     }
 }

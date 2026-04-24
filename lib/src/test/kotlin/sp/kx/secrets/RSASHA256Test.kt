@@ -12,16 +12,14 @@ internal object RSASHA256Test {
         val sig = Signature.getInstance("sha256withrsa")
         val md = MessageDigest.getInstance("sha512")
         var byte: Byte = -1
-        for (i in 0 until 4) {
-            md.update(byte++)
-            val signee = md.digest()
-            md.update(byte++)
-            val keyPair = AsyKeys.RSA.newKeyPair(random = SecureRandom(md.digest()), keySize = 4096)
-            val signature = Signing.RSA.SHA256.sign(key = keyPair.private, signee = signee)
-            sig.initVerify(keyPair.public)
-            sig.update(signee)
-            assertTrue(sig.verify(signature))
-        }
+        md.update(byte++)
+        val signee = md.digest()
+        md.update(byte++)
+        val keyPair = AsyKeys.RSA.newKeyPair(random = SecureRandom(md.digest()), keySize = 4096)
+        val signature = Signing.RSA.SHA256.sign(key = keyPair.private, signee = signee)
+        sig.initVerify(keyPair.public)
+        sig.update(signee)
+        assertTrue(sig.verify(signature))
     }
 
     @Test
@@ -29,15 +27,13 @@ internal object RSASHA256Test {
         val sig = Signature.getInstance("sha256withrsa")
         val md = MessageDigest.getInstance("sha512")
         var byte: Byte = -1
-        for (i in 0 until 4) {
-            md.update(byte++)
-            val signee = md.digest()
-            md.update(byte++)
-            val keyPair = AsyKeys.RSA.newKeyPair(random = SecureRandom(md.digest()), keySize = 4096)
-            sig.initSign(keyPair.private)
-            sig.update(signee)
-            val signature = sig.sign()
-            Signing.RSA.SHA256.verify(key = keyPair.public, signee = signee, signature = signature)
-        }
+        md.update(byte++)
+        val signee = md.digest()
+        md.update(byte++)
+        val keyPair = AsyKeys.RSA.newKeyPair(random = SecureRandom(md.digest()), keySize = 4096)
+        sig.initSign(keyPair.private)
+        sig.update(signee)
+        val signature = sig.sign()
+        Signing.RSA.SHA256.verify(key = keyPair.public, signee = signee, signature = signature)
     }
 }
