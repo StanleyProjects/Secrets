@@ -10,7 +10,6 @@ import java.security.MessageDigest
 import java.security.SecureRandom
 import java.security.interfaces.ECPrivateKey
 import java.security.spec.ECGenParameterSpec
-import java.util.HexFormat
 
 internal object ECTest {
     @Test
